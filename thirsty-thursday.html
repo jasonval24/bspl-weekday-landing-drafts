@@ -227,6 +227,10 @@
     .pay-panel { margin: 0.85rem 0 1rem; }
     .pay-panel .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.45rem; }
     .pay-methods { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .pay-method-btn { cursor: pointer; font: inherit; }
+    .pay-method-btn.is-selected { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--page)); }
+    .pay-selected { margin: 0.55rem 0 0; font-size: 0.85rem; color: color-mix(in srgb, var(--success) 90%, white); }
+    button.bspl-btn-primary { cursor: pointer; width: 100%; }
     .pay-pill {
       font-size: 0.72rem; font-weight: 700; padding: 0.35rem 0.6rem; border-radius: 999px;
       border: 1px solid var(--border); background: var(--page); color: #e5e7eb;
@@ -352,10 +356,11 @@
           <span class="badge-deal">$45 / person + tax</span>
         </div>
 
-        <!-- Mid-page hero video (moved from top) -->
-        <div class="mid-hero" aria-label="Experience video">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://book.bluepedallounge.com/marketing/thirsty-thursday.webp">
-            <source src="https://book.bluepedallounge.com/marketing/gallery-1.mp4" type="video/mp4" />
+        
+        <!-- Mid-page hero video -->
+        <div class="mid-hero portrait" aria-label="Experience video">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://book.bluepedallounge.com/marketing/wacky-wednesday.webp">
+            <source src="assets/wine-down-singing-floral.mp4" type="video/mp4" />
           </video>
           <div class="overlay"></div>
           <div class="caption">
@@ -367,20 +372,16 @@
               </div>
               <div class="meta">2 hr · up to 14 · pay in full only</div>
             </div>
-          
-        <div class="mid-hero portrait" aria-label="Wine Down Wednesday video">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://book.bluepedallounge.com/marketing/wacky-wednesday.webp">
-            <source src="assets/wine-down-singing-floral.mp4" type="video/mp4" />
-          </video>
+          </div>
         </div>
-</div>
-        </div>
+
+
 
         <div class="step-header">
           <span class="step-num">2</span>
           <h2>Pick a date</h2>
         </div>
-        <p class="step-hint">Live open dates from the tours booker for <strong>Thirsty Thursday</strong>. Tap a highlighted day, then Book now.</p>
+        <p class="step-hint">Live open dates from the tours booker for <strong>Thirsty Thursday</strong>. Tap a highlighted day, then pay on this page.</p>
 
         <div class="cal-wrap" data-experience="thirsty-thursday" data-book-base="https://book.bluepedallounge.com/book?experience=thirsty-thursday">
           <div class="cal-head">
@@ -409,18 +410,30 @@
         </div>
 
 
-        <p class="selected-ok">Selected: Thirsty Thursday — pick a date below, then Book now opens the tours booker.</p>
+        <div class="pay-panel" id="pay-panel">
+          <div class="label">Payment methods on this page</div>
+          <div class="pay-methods" role="group" aria-label="Payment methods">
+            <button type="button" class="pay-pill apple pay-method-btn" data-method="apple">Apple Pay</button>
+            <button type="button" class="pay-pill google pay-method-btn" data-method="google">Google Pay</button>
+            <button type="button" class="pay-pill pay-method-btn" data-method="card">Card</button>
+            <button type="button" class="pay-pill afterpay pay-method-btn" data-method="afterpay">Afterpay</button>
+          </div>
+          <p class="pay-note">Pay in full on this landing page — Apple Pay, Google Pay, Card, or Afterpay. Sample draft (no live charge yet).</p>
+          <p class="pay-selected" hidden>Selected: <strong class="pay-selected-label"></strong></p>
+        </div>
+
+        <p class="selected-ok">Selected: Thirsty Thursday — pick a date below, then pay on this page.</p>
       </section>
 
-      <a class="bspl-btn-primary book-now-btn" href="https://book.bluepedallounge.com/book?experience=thirsty-thursday">Book now</a>
+      <button type="button" class="bspl-btn-primary book-now-btn" id="pay-now-btn">Pay now</button>
 
       <p class="fineprint">
-        Sample / example page. Mid-page videos = gallery-1.mp4 plus Wine Down singing-floral. Hero still for this experience: thirsty-thursday.webp.
+        Sample / example page. Mid-page video = Wine Down singing-floral (replaces prior gallery-1 mid-hero). Hero still for this experience: thirsty-thursday.webp.
         Calendar loads from the tours booker availability API. Checkout slug: <code>thirsty-thursday</code>. Not a production deploy.
       
       <p class="fineprint" style="margin-top:0.5rem">
         Tracking on this sample: GA4 <code>G-Y5GFR37NPY</code> (marketing stream — dedicated book.bluepedallounge.com Measurement ID still pending Jason Analytics Admin) + Meta Pixel <code>709846288675545</code> PageView/ViewContent/InitiateCheckout.
-        Purchase fires on the tours booker / Square→Meta CAPI after pay — not on this static page. fbclid/utm params from the ad click are appended to Book now.
+        Sample checkout stays on this page (payment methods above). Live Square charge + Meta CAPI purchase event not wired on this draft yet.
       </p>
 
     </div>
@@ -472,10 +485,10 @@
         openDates = new Set(Array.isArray(data.dates) ? data.dates : []);
         statusEl.textContent = openDates.size
           ? openDates.size + " open dates in the next ~8 weeks — tap one to continue."
-          : "No open dates returned — Book now still opens the tours booker.";
+          : "No open dates returned — Pay now still works on this page once a date is selected.";
       } catch (e) {
         openDates = new Set(SEED_OPEN_DATES);
-        statusEl.textContent = (SEED_OPEN_DATES.length ? SEED_OPEN_DATES.length + " open dates (cached) — tap one to continue." : "Couldn’t load calendar (network). Book now still opens the tours booker.");
+        statusEl.textContent = (SEED_OPEN_DATES.length ? SEED_OPEN_DATES.length + " open dates (cached) — tap one to continue." : "Couldn’t load calendar (network). Pay now still works on this page once a date is selected.");
       }
       render();
     }
@@ -502,8 +515,8 @@
           btn.addEventListener("click", () => {
             selected = iso;
             if (selectedLabel) selectedLabel.textContent = iso;
-            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — Book now opens the tours booker for this experience.";
-            if (bookBtn) bookBtn.href = bookBase;
+            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — next: pick a payment method and Pay now on this page.";
+            if (bookBtn && bookBtn.tagName === "A") bookBtn.href = bookBase;
             render();
           });
         }
@@ -594,6 +607,48 @@
     var statusEl = document.querySelector('.cal-status');
     if (statusEl && window.MutationObserver) {
       new MutationObserver(patchBookLinks).observe(statusEl, { childList: true, characterData: true, subtree: true });
+    }
+  })();
+  </script>
+
+
+  <script>
+  /* PAY_PAGE_WIRE */
+  (function () {
+    var methods = document.querySelectorAll('.pay-method-btn');
+    var selectedEl = document.querySelector('.pay-selected');
+    var selectedLabel = document.querySelector('.pay-selected-label');
+    var payBtn = document.getElementById('pay-now-btn');
+    var chosen = null;
+    methods.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        methods.forEach(function (b) { b.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+        chosen = btn.getAttribute('data-method');
+        if (selectedEl && selectedLabel) {
+          selectedLabel.textContent = btn.textContent.trim();
+          selectedEl.hidden = false;
+        }
+      });
+    });
+    if (payBtn) {
+      payBtn.addEventListener('click', function () {
+        var dateLabel = document.querySelector('.cal-selected-label');
+        var dateOk = dateLabel && dateLabel.textContent && dateLabel.textContent.indexOf('Pick') !== 0;
+        if (!dateOk) {
+          alert('Pick a date on the calendar first.');
+          var cal = document.querySelector('.cal-wrap');
+          if (cal) cal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        if (!chosen) {
+          var panel = document.getElementById('pay-panel');
+          if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          alert('Choose a payment method on this page.');
+          return;
+        }
+        alert('Sample only — ' + (selectedLabel ? selectedLabel.textContent : chosen) + ' checkout would run here (no live charge on this draft).');
+      });
     }
   })();
   </script>
