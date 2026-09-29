@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wine Down Wednesday | Book — Sample (BSPL Instant Book match)</title>
+  <title>Wine Down Wednesday | Book — Sample (BSPL tours booker)</title>
   <meta name="robots" content="noindex,nofollow" />
-  <meta name="description" content="Sample landing page matched to live BSPL Instant Book. Wine Down Wednesday — example only." />
+  <meta name="description" content="Sample landing page matched to the BSPL tours booker. Wine Down Wednesday — example only." />
   <link rel="icon" type="image/jpeg" href="https://book.bluepedallounge.com/brand-logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -291,7 +291,7 @@
 
 </head>
 <body>
-  <div class="sample-banner">SAMPLE ONLY — layout matched to live Instant Book · not published · not linked from Meta</div>
+  <div class="sample-banner">SAMPLE ONLY — tours booker draft · not published · not linked from Meta</div>
 
   <header class="site-header">
     <div class="site-header-inner">
@@ -329,20 +329,6 @@
         </span>
       </div>
 
-      <div class="upcoming-dates" aria-label="Upcoming Wine Down Wednesday dates">
-        <div class="upcoming-label">Upcoming Wine Down Wednesdays</div>
-        <div class="date-chips">
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Sep 30</a>
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Oct 7</a>
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Oct 14</a>
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Oct 21</a>
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Oct 28</a>
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Nov 4</a>
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Nov 11</a>
-          <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Nov 18</a>
-        </div>
-        <p class="upcoming-note">Open seats from the tours booker · times 3pm / 7pm / 8pm CT · $24/person + tax</p>
-      </div>
 
       <div class="fomo" aria-label="Trust highlights">
         <div>Google 4.8 · 82 reviews</div>
@@ -437,16 +423,6 @@
           <div class="row"><span>Date</span><strong class="cal-selected-label">Pick above</strong></div>
         </div>
 
-        <div class="pay-panel">
-          <div class="label">Same Square methods as Instant Book</div>
-          <div class="pay-methods">
-            <span class="pay-pill apple">Apple Pay</span>
-            <span class="pay-pill google">Google Pay</span>
-            <span class="pay-pill">Card</span>
-            <span class="pay-pill afterpay">Afterpay</span>
-          </div>
-          <p class="pay-note">Apple Pay, Google Pay & Afterpay on full-pay checkouts — same rules as /book.</p>
-        </div>
 
         <p class="selected-ok">Selected: Wine Down Wednesday — pick a date below, then Book now opens the tours booker.</p>
       </section>
@@ -455,11 +431,11 @@
 
       <p class="fineprint">
         Sample / example page. Mid-page video = singing-floral file97 (Wine Down creative). Gallery = gallery-2, gallery-3, bg-book. BG = gallery-2. Hero still for this experience: wacky-wednesday.webp.
-        Calendar loads from Instant Book availability API. Checkout slug: <code>wacky-wednesday</code>. Not a production deploy.
+        Calendar loads from the tours booker availability API. Checkout slug: <code>wacky-wednesday</code>. Not a production deploy.
       
       <p class="fineprint" style="margin-top:0.5rem">
         Tracking on this sample: GA4 <code>G-Y5GFR37NPY</code> (marketing stream — dedicated book.bluepedallounge.com Measurement ID still pending Jason Analytics Admin) + Meta Pixel <code>709846288675545</code> PageView/ViewContent/InitiateCheckout.
-        Purchase fires on Instant Book / Square→Meta CAPI after pay — not on this static page. fbclid/utm params from the ad click are appended to Book now.
+        Purchase fires on the tours booker / Square→Meta CAPI after pay — not on this static page. fbclid/utm params from the ad click are appended to Book now.
       </p>
 
     </div>
@@ -488,7 +464,7 @@
       return y + "-" + m + "-" + day;
     }
     function chicagoTodayApprox() {
-      // Approximate America/Chicago as UTC-5/-6 via locale; Instant Book is source of truth
+      // Approximate America/Chicago as UTC-5/-6 via locale; tours booker is source of truth
       const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" });
       const parts = fmt.formatToParts(new Date());
       const get = (t) => parts.find((p) => p.type === t).value;
@@ -597,7 +573,7 @@
           if (v && !u.searchParams.get(k)) u.searchParams.set(k, v);
         });
         // Also persist fbclid into _fbc-style query if Meta dropped it into cookie-only — browser Pixel handles cookies;
-        // passing fbclid on the booker URL lets Instant Book + CAPI see the same click when they read document.location / referrer.
+        // passing fbclid on the booker URL lets the tours booker + CAPI see the same click when they read document.location / referrer.
         return u.toString();
       } catch (e) { return url; }
     }
