@@ -226,15 +226,68 @@
     .pay-panel { margin: 0.85rem 0 1rem; }
     .pay-panel .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.45rem; }
     .pay-methods { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .pay-method-btn { cursor: pointer; font: inherit; }
-    .pay-method-btn.is-selected { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--page)); }
-    .pay-selected { margin: 0.55rem 0 0; font-size: 0.85rem; color: color-mix(in srgb, var(--success) 90%, white); }
-    button.bspl-btn-primary { cursor: pointer; width: 100%; }
     .pay-pill {
       font-size: 0.72rem; font-weight: 700; padding: 0.35rem 0.6rem; border-radius: 999px;
       border: 1px solid var(--border); background: var(--page); color: #e5e7eb;
     }
     .pay-note { margin: 0.5rem 0 0; font-size: 0.75rem; color: var(--muted); }
+
+    .step-header { display: flex; align-items: center; gap: 0.65rem; margin: 1.25rem 0 0.55rem; }
+    .step-num {
+      width: 1.75rem; height: 1.75rem; border-radius: 999px; background: var(--accent);
+      color: #fff; font-weight: 800; font-size: 0.85rem; display: grid; place-items: center; flex-shrink: 0;
+    }
+    .step-header h2 { margin: 0; font-size: 1.15rem; }
+    .step-hint { margin: 0 0 0.75rem; font-size: 0.85rem; color: var(--muted); }
+    .time-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.35rem 0 0.5rem; }
+    .time-chip {
+      min-width: 4.5rem; padding: 0.55rem 0.75rem; border-radius: 0.65rem;
+      border: 1px solid var(--border); background: var(--page); color: #e5e7eb;
+      font-weight: 700; font-size: 0.9rem; cursor: pointer;
+    }
+    .time-chip.is-selected, .time-chip:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, var(--page)); color: #fff; }
+    .time-chip:disabled { opacity: 0.35; cursor: not-allowed; }
+    .guests-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 0.5rem 0 0.25rem; }
+    .guests-stepper { display: flex; align-items: center; gap: 0.55rem; }
+    .guests-stepper button {
+      width: 2.25rem; height: 2.25rem; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--page); color: #fff; font-size: 1.15rem; font-weight: 700; cursor: pointer;
+    }
+    .guests-stepper button:hover { border-color: var(--accent); }
+    .guests-stepper .n { min-width: 1.5rem; text-align: center; font-weight: 800; font-size: 1.1rem; }
+    .pay-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .pay-method-btn {
+      cursor: pointer; font: inherit; text-align: left;
+      padding: 0.75rem 0.85rem; border-radius: 0.75rem;
+      border: 1px solid var(--border); background: var(--page); color: #e5e7eb;
+      font-weight: 700; font-size: 0.9rem;
+    }
+    .pay-method-btn.is-selected {
+      border-color: var(--accent); color: #fff;
+      background: color-mix(in srgb, var(--accent) 16%, var(--page));
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .pay-method-btn .sub { display: block; font-size: 0.7rem; font-weight: 500; color: var(--muted); margin-top: 0.15rem; }
+    .card-fields {
+      margin-top: 0.75rem; display: none; flex-direction: column; gap: 0.5rem;
+      padding: 0.75rem; border-radius: 0.75rem; border: 1px solid var(--border); background: color-mix(in srgb, var(--page) 80%, #000);
+    }
+    .card-fields.is-open { display: flex; }
+    .card-fields label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+    .card-fields input {
+      width: 100%; box-sizing: border-box; padding: 0.65rem 0.75rem; border-radius: 0.5rem;
+      border: 1px solid var(--border); background: #0b1220; color: #fff; font-size: 0.95rem;
+    }
+    .card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .pay-total {
+      margin: 0.85rem 0 0.65rem; display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 1.05rem; font-weight: 800;
+    }
+    .pay-total .amt { color: var(--accent); font-size: 1.35rem; }
+    .pay-selected { margin: 0.55rem 0 0; font-size: 0.85rem; color: color-mix(in srgb, var(--success) 90%, white); }
+    button.bspl-btn-primary { cursor: pointer; width: 100%; border: none; }
+    .cal-empty-hint { margin: 0.35rem 0 0; font-size: 0.78rem; color: #fbbf24; }
+
     .selected-ok { margin: 0.75rem 0; font-size: 0.85rem; color: color-mix(in srgb, var(--success) 90%, white); }
     .bspl-btn-primary {
       display: block; width: 100%; text-align: center;
@@ -395,13 +448,14 @@
           </div>
         </div>
 
+        
         <div class="step-header">
           <span class="step-num">2</span>
           <h2>Pick a date</h2>
         </div>
-        <p class="step-hint">Live open dates from the tours booker for <strong>Wine Down Wednesday</strong>. Tap a highlighted day, then pay on this page.</p>
+        <p class="step-hint">Open dates for <strong>Wine Down Wednesday</strong>. Highlighted days are bookable — calendar jumps to the first open month.</p>
 
-        <div class="cal-wrap" data-experience="wacky-wednesday" data-book-base="https://book.bluepedallounge.com/book?experience=wacky-wednesday">
+        <div class="cal-wrap" data-experience="wacky-wednesday" data-price-cents="2400" data-bogo-half="0">
           <div class="cal-head">
             <h3 class="cal-month-label">…</h3>
             <div class="cal-nav">
@@ -417,6 +471,26 @@
           <p class="cal-status">Loading open dates…</p>
         </div>
 
+        <div class="step-header">
+          <span class="step-num">3</span>
+          <h2>Pick a time</h2>
+        </div>
+        <p class="step-hint time-hint">Choose a date first to load open departure times.</p>
+        <div class="time-grid" id="time-grid" aria-label="Open times"></div>
+
+        <div class="step-header">
+          <span class="step-num">4</span>
+          <h2>Guests</h2>
+        </div>
+        <div class="guests-row">
+          <span style="color:var(--muted);font-size:0.9rem">Party size (max 14)</span>
+          <div class="guests-stepper">
+            <button type="button" id="guests-minus" aria-label="Fewer guests">−</button>
+            <span class="n" id="guests-n">2</span>
+            <button type="button" id="guests-plus" aria-label="More guests">+</button>
+          </div>
+        </div>
+
         <div class="summary-box">
           <h3>Your ride</h3>
           <div class="row"><span>Experience</span><strong>Wine Down Wednesday</strong></div>
@@ -425,133 +499,62 @@
           <div class="row"><span>Payment</span><strong>Pay in full</strong></div>
           <div class="row"><span>Price</span><strong class="accent">$24</strong></div>
           <div class="row"><span>Date</span><strong class="cal-selected-label">Pick above</strong></div>
+          <div class="row"><span>Time</span><strong class="time-selected-label">Pick above</strong></div>
+          <div class="row"><span>Guests</span><strong class="guests-selected-label">2</strong></div>
         </div>
 
-
+        <div class="step-header">
+          <span class="step-num">5</span>
+          <h2>Payment</h2>
+        </div>
         <div class="pay-panel" id="pay-panel">
-          <div class="label">Payment methods on this page</div>
+          <div class="label">Pay on this page — not a handoff to the booker</div>
           <div class="pay-methods" role="group" aria-label="Payment methods">
-            <button type="button" class="pay-pill apple pay-method-btn" data-method="apple">Apple Pay</button>
-            <button type="button" class="pay-pill google pay-method-btn" data-method="google">Google Pay</button>
-            <button type="button" class="pay-pill pay-method-btn" data-method="card">Card</button>
-            <button type="button" class="pay-pill afterpay pay-method-btn" data-method="afterpay">Afterpay</button>
+            <button type="button" class="pay-method-btn" data-method="apple">Apple Pay<span class="sub">Safari / Wallet</span></button>
+            <button type="button" class="pay-method-btn" data-method="google">Google Pay<span class="sub">Chrome / Wallet</span></button>
+            <button type="button" class="pay-method-btn" data-method="card">Card<span class="sub">Visa, Mastercard, Amex</span></button>
+            <button type="button" class="pay-method-btn" data-method="afterpay">Afterpay<span class="sub">Pay in 4 · full pay only</span></button>
           </div>
-          <p class="pay-note">Pay in full on this landing page — Apple Pay, Google Pay, Card, or Afterpay. Sample draft (no live charge yet).</p>
+          <div class="card-fields" id="card-fields" aria-hidden="true">
+            <div>
+              <label for="card-number">Card number</label>
+              <input id="card-number" name="card-number" inputmode="numeric" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" />
+            </div>
+            <div class="card-row">
+              <div>
+                <label for="card-exp">Expiry</label>
+                <input id="card-exp" name="card-exp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY" />
+              </div>
+              <div>
+                <label for="card-cvc">CVC</label>
+                <input id="card-cvc" name="card-cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" />
+              </div>
+            </div>
+            <div>
+              <label for="card-zip">ZIP</label>
+              <input id="card-zip" name="card-zip" inputmode="numeric" autocomplete="postal-code" placeholder="ZIP" />
+            </div>
+          </div>
+          <div class="pay-total"><span>Total due</span><span class="amt" id="pay-total-amt">—</span></div>
+          <p class="pay-note">Draft UI on this landing page (Square live charge not wired here yet). Same methods as Instant Book: Apple Pay, Google Pay, Card, Afterpay.</p>
           <p class="pay-selected" hidden>Selected: <strong class="pay-selected-label"></strong></p>
+          <button type="button" class="bspl-btn-primary book-now-btn" id="pay-now-btn" style="margin-top:0.75rem">Pay now</button>
         </div>
 
-        <p class="selected-ok">Selected: Wine Down Wednesday — pick a date below, then pay on this page.</p>
+        <p class="selected-ok">Selected: Wine Down Wednesday — finish date, time, and payment on this page.</p>
+
       </section>
-
-      <button type="button" class="bspl-btn-primary book-now-btn" id="pay-now-btn">Pay now</button>
-
-      <p class="fineprint">
+<p class="fineprint">
         Sample / example page. Mid-page video = singing-floral file97 (Wine Down creative). Gallery = gallery-2, gallery-3, bg-book. BG = gallery-2. Hero still for this experience: wacky-wednesday.webp.
         Calendar loads from the tours booker availability API. Checkout slug: <code>wacky-wednesday</code>. Not a production deploy.
       
       <p class="fineprint" style="margin-top:0.5rem">
         Tracking on this sample: GA4 <code>G-Y5GFR37NPY</code> (marketing stream — dedicated book.bluepedallounge.com Measurement ID still pending Jason Analytics Admin) + Meta Pixel <code>709846288675545</code> PageView/ViewContent/InitiateCheckout.
-        Sample checkout stays on this page (payment methods above). Live Square charge + Meta CAPI purchase event not wired on this draft yet.
+        Checkout UI stays on this page (date → time → guests → payment methods). Live Square charge still pending for this draft.
       </p>
 
     </div>
   </main>
-
-  <script>
-  (function () {
-    const wrap = document.querySelector(".cal-wrap");
-    if (!wrap) return;
-    const experienceId = wrap.dataset.experience;
-    const bookBase = wrap.dataset.bookBase;
-    const daysEl = wrap.querySelector(".cal-days");
-    const statusEl = wrap.querySelector(".cal-status");
-    const monthLabel = wrap.querySelector(".cal-month-label");
-    const selectedLabel = document.querySelector(".cal-selected-label");
-    const bookBtn = document.querySelector(".book-now-btn");
-    const SEED_OPEN_DATES = ['2026-09-30', '2026-10-07', '2026-10-14', '2026-10-21', '2026-10-28', '2026-11-04', '2026-11-11', '2026-11-18'];
-    let openDates = new Set(SEED_OPEN_DATES);
-    let view = new Date();
-    view.setDate(1);
-    let selected = null;
-
-    function ymd(d) {
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      return y + "-" + m + "-" + day;
-    }
-    function chicagoTodayApprox() {
-      // Approximate America/Chicago as UTC-5/-6 via locale; tours booker is source of truth
-      const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" });
-      const parts = fmt.formatToParts(new Date());
-      const get = (t) => parts.find((p) => p.type === t).value;
-      return get("year") + "-" + get("month") + "-" + get("day");
-    }
-    async function loadDates() {
-      statusEl.textContent = "Loading open dates…";
-      const from = chicagoTodayApprox();
-      const qs = new URLSearchParams({
-        experienceId,
-        from,
-        days: "56",
-        guests: "1",
-        calendar: "1",
-      });
-      try {
-        const res = await fetch("https://book.bluepedallounge.com/api/availability?" + qs.toString());
-        const data = await res.json();
-        openDates = new Set(Array.isArray(data.dates) ? data.dates : []);
-        statusEl.textContent = openDates.size
-          ? openDates.size + " open dates in the next ~8 weeks — tap one to continue."
-          : "No open dates returned — Pay now still works on this page once a date is selected.";
-      } catch (e) {
-        openDates = new Set(SEED_OPEN_DATES);
-        statusEl.textContent = (SEED_OPEN_DATES.length ? SEED_OPEN_DATES.length + " open dates (cached) — tap one to continue." : "Couldn’t load calendar (network). Pay now still works on this page once a date is selected.");
-      }
-      render();
-    }
-    function render() {
-      const y = view.getFullYear();
-      const m = view.getMonth();
-      monthLabel.textContent = view.toLocaleString("en-US", { month: "long", year: "numeric" });
-      daysEl.innerHTML = "";
-      const firstDow = new Date(y, m, 1).getDay();
-      const dim = new Date(y, m + 1, 0).getDate();
-      for (let i = 0; i < firstDow; i++) {
-        const cell = document.createElement("div");
-        cell.className = "cal-day other";
-        daysEl.appendChild(cell);
-      }
-      for (let d = 1; d <= dim; d++) {
-        const iso = y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.textContent = String(d);
-        btn.className = "cal-day" + (openDates.has(iso) ? " open" : "");
-        if (selected === iso) btn.classList.add("selected");
-        if (openDates.has(iso)) {
-          btn.addEventListener("click", () => {
-            selected = iso;
-            if (selectedLabel) selectedLabel.textContent = iso;
-            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — next: pick a payment method and Pay now on this page.";
-            if (bookBtn && bookBtn.tagName === "A") bookBtn.href = bookBase;
-            render();
-          });
-        }
-        daysEl.appendChild(btn);
-      }
-    }
-    wrap.querySelector(".cal-prev").addEventListener("click", () => {
-      view.setMonth(view.getMonth() - 1);
-      render();
-    });
-    wrap.querySelector(".cal-next").addEventListener("click", () => {
-      view.setMonth(view.getMonth() + 1);
-      render();
-    });
-    loadDates();
-  })();
-  </script>
 
   <script>
   (function () {
@@ -630,44 +633,258 @@
   </script>
 
 
+    <script>window.__SEED_OPEN_DATES = ['2026-09-30', '2026-10-07', '2026-10-14', '2026-10-21', '2026-10-28', '2026-11-04', '2026-11-11', '2026-11-18', '2026-11-25'];</script>
+
   <script>
-  /* PAY_PAGE_WIRE */
+  /* CHECKOUT_WIRE */
   (function () {
-    var methods = document.querySelectorAll('.pay-method-btn');
-    var selectedEl = document.querySelector('.pay-selected');
-    var selectedLabel = document.querySelector('.pay-selected-label');
-    var payBtn = document.getElementById('pay-now-btn');
-    var chosen = null;
-    methods.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        methods.forEach(function (b) { b.classList.remove('is-selected'); });
-        btn.classList.add('is-selected');
-        chosen = btn.getAttribute('data-method');
-        if (selectedEl && selectedLabel) {
-          selectedLabel.textContent = btn.textContent.trim();
+    const wrap = document.querySelector(".cal-wrap");
+    if (!wrap) return;
+    const experienceId = wrap.dataset.experience;
+    const priceCents = Number(wrap.dataset.priceCents || "0");
+    const bogoHalf = wrap.dataset.bogoHalf === "1";
+    const daysEl = wrap.querySelector(".cal-days");
+    const statusEl = wrap.querySelector(".cal-status");
+    const monthLabel = wrap.querySelector(".cal-month-label");
+    const selectedLabel = document.querySelector(".cal-selected-label");
+    const timeLabel = document.querySelector(".time-selected-label");
+    const guestsLabel = document.querySelector(".guests-selected-label");
+    const timeGrid = document.getElementById("time-grid");
+    const timeHint = document.querySelector(".time-hint");
+    const payTotal = document.getElementById("pay-total-amt");
+    const SEED = window.__SEED_OPEN_DATES || [];
+    let openDates = new Set(SEED);
+    let view = new Date();
+    view.setDate(1);
+    let selected = null;
+    let selectedTime = null;
+    let guests = 2;
+
+    function ymdParts(iso) {
+      const [y, m, d] = iso.split("-").map(Number);
+      return { y, m: m - 1, d };
+    }
+    function chicagoTodayApprox() {
+      const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" });
+      const parts = fmt.formatToParts(new Date());
+      const get = (t) => parts.find((p) => p.type === t).value;
+      return get("year") + "-" + get("month") + "-" + get("day");
+    }
+    function money(cents) {
+      return "$" + (cents / 100).toFixed(2);
+    }
+    function seatSubtotal() {
+      if (!priceCents || guests < 1) return 0;
+      if (!bogoHalf) return priceCents * guests;
+      // BOGO ½: pairs get 2nd at half; odd guest pays full
+      const pairs = Math.floor(guests / 2);
+      const rem = guests % 2;
+      return pairs * (priceCents + Math.round(priceCents / 2)) + rem * priceCents;
+    }
+    function taxOn(sub) {
+      return Math.round(sub * 0.0825); // sample TX-ish; live booker is source of truth
+    }
+    function updateTotal() {
+      const sub = seatSubtotal();
+      const tax = taxOn(sub);
+      const total = sub + tax;
+      if (payTotal) payTotal.textContent = guests && selected ? money(total) + " incl. tax" : "—";
+      if (guestsLabel) guestsLabel.textContent = String(guests);
+    }
+    function jumpToFirstOpenMonth() {
+      const sorted = Array.from(openDates).sort();
+      if (!sorted.length) return;
+      const { y, m } = ymdParts(sorted[0]);
+      view = new Date(y, m, 1);
+    }
+    async function loadDates() {
+      statusEl.textContent = "Loading open dates…";
+      const from = chicagoTodayApprox();
+      const qs = new URLSearchParams({
+        experienceId,
+        from,
+        days: "90",
+        guests: "1",
+        calendar: "1",
+      });
+      try {
+        const res = await fetch("https://book.bluepedallounge.com/api/availability?" + qs.toString());
+        const data = await res.json();
+        const api = Array.isArray(data.dates) ? data.dates : [];
+        openDates = new Set(api.length ? api : SEED);
+        statusEl.textContent = openDates.size
+          ? openDates.size + " open dates — tap a highlighted day."
+          : "No open dates returned yet.";
+      } catch (e) {
+        openDates = new Set(SEED);
+        statusEl.textContent = SEED.length
+          ? SEED.length + " open dates (cached) — tap a highlighted day."
+          : "Couldn’t load calendar (network).";
+      }
+      jumpToFirstOpenMonth();
+      render();
+      updateTotal();
+    }
+    function render() {
+      const y = view.getFullYear();
+      const m = view.getMonth();
+      monthLabel.textContent = view.toLocaleString("en-US", { month: "long", year: "numeric" });
+      daysEl.innerHTML = "";
+      const firstDow = new Date(y, m, 1).getDay();
+      const dim = new Date(y, m + 1, 0).getDate();
+      for (let i = 0; i < firstDow; i++) {
+        const cell = document.createElement("div");
+        cell.className = "cal-day other";
+        daysEl.appendChild(cell);
+      }
+      let openInMonth = 0;
+      for (let d = 1; d <= dim; d++) {
+        const iso = y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = String(d);
+        const isOpen = openDates.has(iso);
+        if (isOpen) openInMonth++;
+        btn.className = "cal-day" + (isOpen ? " open" : "");
+        if (selected === iso) btn.classList.add("selected");
+        if (isOpen) {
+          btn.addEventListener("click", () => {
+            selected = iso;
+            selectedTime = null;
+            if (selectedLabel) selectedLabel.textContent = iso;
+            if (timeLabel) timeLabel.textContent = "Pick above";
+            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — pick a time below.";
+            render();
+            loadSlots(iso);
+            updateTotal();
+          });
+        }
+        daysEl.appendChild(btn);
+      }
+      // soft hint if this month has none
+      let hint = wrap.querySelector(".cal-empty-hint");
+      if (!openInMonth && openDates.size) {
+        if (!hint) {
+          hint = document.createElement("p");
+          hint.className = "cal-empty-hint";
+          statusEl.after(hint);
+        }
+        hint.textContent = "No open days in this month — use › to find highlighted dates.";
+      } else if (hint) {
+        hint.remove();
+      }
+    }
+    async function loadSlots(iso) {
+      if (!timeGrid) return;
+      timeGrid.innerHTML = "";
+      if (timeHint) timeHint.textContent = "Loading open times…";
+      try {
+        const qs = new URLSearchParams({ experienceId, date: iso, guests: String(guests) });
+        const res = await fetch("https://book.bluepedallounge.com/api/availability?" + qs.toString());
+        const data = await res.json();
+        const slots = Array.isArray(data.slots) ? data.slots.filter((s) => s.available || s.callToBook) : [];
+        if (!slots.length) {
+          if (timeHint) timeHint.textContent = "No open times this day — pick another date.";
+          return;
+        }
+        if (timeHint) timeHint.textContent = "Tap a departure time.";
+        slots.forEach((s) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "time-chip";
+          b.textContent = s.time;
+          b.addEventListener("click", () => {
+            selectedTime = s.time;
+            timeGrid.querySelectorAll(".time-chip").forEach((x) => x.classList.remove("is-selected"));
+            b.classList.add("is-selected");
+            if (timeLabel) timeLabel.textContent = s.time;
+            updateTotal();
+          });
+          timeGrid.appendChild(b);
+        });
+      } catch (e) {
+        if (timeHint) timeHint.textContent = "Couldn’t load times (network). Try again.";
+      }
+    }
+    wrap.querySelector(".cal-prev").addEventListener("click", () => {
+      view.setMonth(view.getMonth() - 1);
+      render();
+    });
+    wrap.querySelector(".cal-next").addEventListener("click", () => {
+      view.setMonth(view.getMonth() + 1);
+      render();
+    });
+    document.getElementById("guests-minus").addEventListener("click", () => {
+      guests = Math.max(1, guests - 1);
+      document.getElementById("guests-n").textContent = String(guests);
+      updateTotal();
+      if (selected) loadSlots(selected);
+    });
+    document.getElementById("guests-plus").addEventListener("click", () => {
+      guests = Math.min(14, guests + 1);
+      document.getElementById("guests-n").textContent = String(guests);
+      updateTotal();
+      if (selected) loadSlots(selected);
+    });
+
+    // payment methods
+    const methods = document.querySelectorAll(".pay-method-btn");
+    const selectedEl = document.querySelector(".pay-selected");
+    const selectedMethodLabel = document.querySelector(".pay-selected-label");
+    const cardFields = document.getElementById("card-fields");
+    let chosen = null;
+    methods.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        methods.forEach((b) => b.classList.remove("is-selected"));
+        btn.classList.add("is-selected");
+        chosen = btn.getAttribute("data-method");
+        if (selectedEl && selectedMethodLabel) {
+          selectedMethodLabel.textContent = btn.childNodes[0].textContent.trim();
           selectedEl.hidden = false;
+        }
+        if (cardFields) {
+          const open = chosen === "card";
+          cardFields.classList.toggle("is-open", open);
+          cardFields.setAttribute("aria-hidden", open ? "false" : "true");
         }
       });
     });
+    const payBtn = document.getElementById("pay-now-btn");
     if (payBtn) {
-      payBtn.addEventListener('click', function () {
-        var dateLabel = document.querySelector('.cal-selected-label');
-        var dateOk = dateLabel && dateLabel.textContent && dateLabel.textContent.indexOf('Pick') !== 0;
-        if (!dateOk) {
-          alert('Pick a date on the calendar first.');
-          var cal = document.querySelector('.cal-wrap');
-          if (cal) cal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      payBtn.addEventListener("click", () => {
+        if (!selected) {
+          alert("Pick a date on the calendar first.");
+          wrap.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+        if (!selectedTime) {
+          alert("Pick a departure time.");
+          timeGrid && timeGrid.scrollIntoView({ behavior: "smooth", block: "center" });
           return;
         }
         if (!chosen) {
-          var panel = document.getElementById('pay-panel');
-          if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          alert('Choose a payment method on this page.');
+          document.getElementById("pay-panel").scrollIntoView({ behavior: "smooth", block: "center" });
+          alert("Choose a payment method on this page.");
           return;
         }
-        alert('Sample only — ' + (selectedLabel ? selectedLabel.textContent : chosen) + ' checkout would run here (no live charge on this draft).');
+        const sub = seatSubtotal();
+        const total = sub + taxOn(sub);
+        alert(
+          "Sample only — " +
+            (selectedMethodLabel ? selectedMethodLabel.textContent : chosen) +
+            " would charge " +
+            money(total) +
+            " for " +
+            guests +
+            " guest(s) on " +
+            selected +
+            " at " +
+            selectedTime +
+            ". Live Square not wired on this draft yet."
+        );
       });
     }
+    loadDates();
   })();
   </script>
 
