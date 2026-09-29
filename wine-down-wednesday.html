@@ -452,7 +452,8 @@
     const monthLabel = wrap.querySelector(".cal-month-label");
     const selectedLabel = document.querySelector(".cal-selected-label");
     const bookBtn = document.querySelector(".book-now-btn");
-    let openDates = new Set();
+    const SEED_OPEN_DATES = ['2026-09-30', '2026-10-07', '2026-10-14', '2026-10-21', '2026-10-28', '2026-11-04', '2026-11-11', '2026-11-18'];
+    let openDates = new Set(SEED_OPEN_DATES);
     let view = new Date();
     view.setDate(1);
     let selected = null;
@@ -488,8 +489,8 @@
           ? openDates.size + " open dates in the next ~8 weeks — tap one to continue."
           : "No open dates returned — Book now still opens the tours booker.";
       } catch (e) {
-        openDates = new Set();
-        statusEl.textContent = "Couldn’t load calendar (network). Book now still opens the tours booker.";
+        openDates = new Set(SEED_OPEN_DATES);
+        statusEl.textContent = (SEED_OPEN_DATES.length ? SEED_OPEN_DATES.length + " open dates (cached) — tap one to continue." : "Couldn’t load calendar (network). Book now still opens the tours booker.");
       }
       render();
     }
