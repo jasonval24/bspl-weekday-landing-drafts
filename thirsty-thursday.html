@@ -178,6 +178,30 @@
     .mid-hero .caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem 1.1rem 1.15rem; }
     .mid-hero .caption h3 { margin: 0 0 0.35rem; font-size: 1.25rem; }
     .mid-hero .caption .blurb { margin: 0 0 0.65rem; color: #e5e7eb; font-size: 0.9rem; max-width: 36rem; }
+
+    .mid-hero-pair {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 0.55rem;
+      margin: 0.85rem 0 1.1rem;
+      align-items: stretch;
+    }
+    @media (max-width: 520px) {
+      .mid-hero-pair { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+    }
+    .mid-hero-pair .mid-hero {
+      margin: 0;
+      min-height: 0;
+      aspect-ratio: 9 / 16;
+      max-height: 28rem;
+    }
+    .mid-hero-pair .mid-hero.wide {
+      aspect-ratio: 4 / 5;
+    }
+    .mid-hero-pair .mid-hero .caption h3 { font-size: 1.05rem; }
+    .mid-hero-pair .mid-hero .caption .blurb { font-size: 0.78rem; max-width: none; }
+    .mid-hero-pair .mid-hero .caption .price-line { flex-wrap: wrap; gap: 0.35rem; }
+
     .price-line { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: baseline; justify-content: space-between; }
     .price-line .amt { font-family: Oswald, system-ui, sans-serif; font-size: 1.75rem; font-weight: 700; color: #fff; }
     .price-line .unit { color: var(--muted); font-size: 0.9rem; margin-left: 0.25rem; }
@@ -410,23 +434,33 @@
         </div>
 
         
-        <!-- Mid-page hero video -->
-        <div class="mid-hero portrait" aria-label="Experience video">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://book.bluepedallounge.com/marketing/wacky-wednesday.webp">
-            <source src="assets/wine-down-singing-floral.mp4" type="video/mp4" />
-          </video>
-          <div class="overlay"></div>
-          <div class="caption">
-            <h3>Thirsty Thursday on the trolley</h3>
-            <p class="blurb">Buy one for $45 and get the second half off (pairs). BYOB · ice & coolers · no pedaling required.</p>
-            <div class="price-line">
-              <div>
-                <span class="amt">$45</span><span class="unit">/person + tax · BOGO½</span>
+        
+        <!-- Mid-page hero videos: gallery-1 + Wine Down singing-floral side by side -->
+        <div class="mid-hero-pair" aria-label="Experience videos">
+          <div class="mid-hero wide" aria-label="Thirsty Thursday trolley clip">
+            <video autoplay muted loop playsinline preload="metadata" poster="https://book.bluepedallounge.com/marketing/gallery-1.webp">
+              <source src="https://book.bluepedallounge.com/marketing/gallery-1.mp4" type="video/mp4" />
+            </video>
+            <div class="overlay"></div>
+            <div class="caption">
+              <h3>Thirsty Thursday on the trolley</h3>
+              <p class="blurb">Buy one for $45 and get the second half off (pairs). BYOB · ice &amp; coolers · no pedaling required.</p>
+              <div class="price-line">
+                <div>
+                  <span class="amt">$45</span><span class="unit">/person + tax · BOGO½</span>
+                </div>
+                <div class="meta">2 hr · up to 14 · pay in full only</div>
               </div>
-              <div class="meta">2 hr · up to 14 · pay in full only</div>
             </div>
           </div>
+          <div class="mid-hero portrait" aria-label="Party vibes clip">
+            <video autoplay muted loop playsinline preload="metadata" poster="https://book.bluepedallounge.com/marketing/wacky-wednesday.webp">
+              <source src="assets/wine-down-singing-floral.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
+
+
 
 
 
@@ -484,55 +518,17 @@
           <div class="row"><span>Time</span><strong class="time-selected-label">Pick above</strong></div>
           <div class="row"><span>Guests</span><strong class="guests-selected-label">2</strong></div>
         </div>
-
-        <div class="step-header">
-          <span class="step-num">5</span>
-          <h2>Payment</h2>
-        </div>
-        <div class="pay-panel" id="pay-panel">
-          <div class="label">Pay on this page — not a handoff to the booker</div>
-          <div class="pay-methods" role="group" aria-label="Payment methods">
-            <button type="button" class="pay-method-btn" data-method="apple">Apple Pay<span class="sub">Safari / Wallet</span></button>
-            <button type="button" class="pay-method-btn" data-method="google">Google Pay<span class="sub">Chrome / Wallet</span></button>
-            <button type="button" class="pay-method-btn" data-method="card">Card<span class="sub">Visa, Mastercard, Amex</span></button>
-            <button type="button" class="pay-method-btn" data-method="afterpay">Afterpay<span class="sub">Pay in 4 · full pay only</span></button>
-          </div>
-          <div class="card-fields" id="card-fields" aria-hidden="true">
-            <div>
-              <label for="card-number">Card number</label>
-              <input id="card-number" name="card-number" inputmode="numeric" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" />
-            </div>
-            <div class="card-row">
-              <div>
-                <label for="card-exp">Expiry</label>
-                <input id="card-exp" name="card-exp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY" />
-              </div>
-              <div>
-                <label for="card-cvc">CVC</label>
-                <input id="card-cvc" name="card-cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" />
-              </div>
-            </div>
-            <div>
-              <label for="card-zip">ZIP</label>
-              <input id="card-zip" name="card-zip" inputmode="numeric" autocomplete="postal-code" placeholder="ZIP" />
-            </div>
-          </div>
-          <div class="pay-total"><span>Total due</span><span class="amt" id="pay-total-amt">—</span></div>
-          <p class="pay-note">Draft UI on this landing page (Square live charge not wired here yet). Same methods as Instant Book: Apple Pay, Google Pay, Card, Afterpay.</p>
-          <p class="pay-selected" hidden>Selected: <strong class="pay-selected-label"></strong></p>
-          <button type="button" class="bspl-btn-primary book-now-btn" id="pay-now-btn" style="margin-top:0.75rem">Pay now</button>
-        </div>
-
-        <p class="selected-ok">Selected: Thirsty Thursday — finish date, time, and payment on this page.</p>
+<p class="selected-ok">Selected: Thirsty Thursday — pick a date &amp; time, then Book now opens the tours booker.</p>
 
       </section>
+
+      <a class="bspl-btn-primary book-now-btn" href="https://book.bluepedallounge.com/book?experience=thirsty-thursday">Book now</a>
 <p class="fineprint">
-        Sample / example page. Mid-page video = Wine Down singing-floral (replaces prior gallery-1 mid-hero). Hero still for this experience: thirsty-thursday.webp.
-        Calendar loads from the tours booker availability API. Checkout slug: <code>thirsty-thursday</code>. Not a production deploy.
+        Sample / example page. Mid-page videos = gallery-1.mp4 + Wine Down singing-floral side by side. Hero still: thirsty-thursday.webp. Calendar loads from the tours booker availability API. Not a production deploy.
       
       <p class="fineprint" style="margin-top:0.5rem">
         Tracking on this sample: GA4 <code>G-Y5GFR37NPY</code> (marketing stream — dedicated book.bluepedallounge.com Measurement ID still pending Jason Analytics Admin) + Meta Pixel <code>709846288675545</code> PageView/ViewContent/InitiateCheckout.
-        Checkout UI stays on this page (date → time → guests → payment methods). Live Square charge still pending for this draft.
+        No on-page payment methods — Book now opens the tours booker (Square checkout lives there).
       </p>
 
     </div>
@@ -617,14 +613,13 @@
 
     <script>window.__SEED_OPEN_DATES = ['2026-10-01', '2026-10-08', '2026-10-15', '2026-10-22', '2026-10-29', '2026-11-05', '2026-11-12', '2026-11-19', '2026-11-26'];</script>
 
+  
   <script>
   /* CHECKOUT_WIRE */
   (function () {
     const wrap = document.querySelector(".cal-wrap");
     if (!wrap) return;
     const experienceId = wrap.dataset.experience;
-    const priceCents = Number(wrap.dataset.priceCents || "0");
-    const bogoHalf = wrap.dataset.bogoHalf === "1";
     const daysEl = wrap.querySelector(".cal-days");
     const statusEl = wrap.querySelector(".cal-status");
     const monthLabel = wrap.querySelector(".cal-month-label");
@@ -633,7 +628,7 @@
     const guestsLabel = document.querySelector(".guests-selected-label");
     const timeGrid = document.getElementById("time-grid");
     const timeHint = document.querySelector(".time-hint");
-    const payTotal = document.getElementById("pay-total-amt");
+    const bookBtn = document.querySelector(".book-now-btn");
     const SEED = window.__SEED_OPEN_DATES || [];
     let openDates = new Set(SEED);
     let view = new Date();
@@ -652,26 +647,18 @@
       const get = (t) => parts.find((p) => p.type === t).value;
       return get("year") + "-" + get("month") + "-" + get("day");
     }
-    function money(cents) {
-      return "$" + (cents / 100).toFixed(2);
-    }
-    function seatSubtotal() {
-      if (!priceCents || guests < 1) return 0;
-      if (!bogoHalf) return priceCents * guests;
-      // BOGO ½: pairs get 2nd at half; odd guest pays full
-      const pairs = Math.floor(guests / 2);
-      const rem = guests % 2;
-      return pairs * (priceCents + Math.round(priceCents / 2)) + rem * priceCents;
-    }
-    function taxOn(sub) {
-      return Math.round(sub * 0.0825); // sample TX-ish; live booker is source of truth
-    }
-    function updateTotal() {
-      const sub = seatSubtotal();
-      const tax = taxOn(sub);
-      const total = sub + tax;
-      if (payTotal) payTotal.textContent = guests && selected ? money(total) + " incl. tax" : "—";
-      if (guestsLabel) guestsLabel.textContent = String(guests);
+    function patchBookHref() {
+      if (!bookBtn || bookBtn.tagName !== "A") return;
+      try {
+        const u = new URL(bookBtn.getAttribute("href"), window.location.href);
+        u.searchParams.set("experience", experienceId);
+        if (selected) u.searchParams.set("date", selected);
+        else u.searchParams.delete("date");
+        if (selectedTime) u.searchParams.set("time", selectedTime);
+        else u.searchParams.delete("time");
+        u.searchParams.set("guests", String(guests));
+        bookBtn.setAttribute("href", u.toString());
+      } catch (e) {}
     }
     function jumpToFirstOpenMonth() {
       const sorted = Array.from(openDates).sort();
@@ -681,10 +668,9 @@
     }
     async function loadDates() {
       statusEl.textContent = "Loading open dates…";
-      const from = chicagoTodayApprox();
       const qs = new URLSearchParams({
         experienceId,
-        from,
+        from: chicagoTodayApprox(),
         days: "90",
         guests: "1",
         calendar: "1",
@@ -705,7 +691,7 @@
       }
       jumpToFirstOpenMonth();
       render();
-      updateTotal();
+      patchBookHref();
     }
     function render() {
       const y = view.getFullYear();
@@ -735,15 +721,14 @@
             selectedTime = null;
             if (selectedLabel) selectedLabel.textContent = iso;
             if (timeLabel) timeLabel.textContent = "Pick above";
-            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — pick a time below.";
+            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — pick a time, then Book now.";
             render();
             loadSlots(iso);
-            updateTotal();
+            patchBookHref();
           });
         }
         daysEl.appendChild(btn);
       }
-      // soft hint if this month has none
       let hint = wrap.querySelector(".cal-empty-hint");
       if (!openInMonth && openDates.size) {
         if (!hint) {
@@ -780,7 +765,7 @@
             timeGrid.querySelectorAll(".time-chip").forEach((x) => x.classList.remove("is-selected"));
             b.classList.add("is-selected");
             if (timeLabel) timeLabel.textContent = s.time;
-            updateTotal();
+            patchBookHref();
           });
           timeGrid.appendChild(b);
         });
@@ -796,76 +781,23 @@
       view.setMonth(view.getMonth() + 1);
       render();
     });
-    document.getElementById("guests-minus").addEventListener("click", () => {
+    const minus = document.getElementById("guests-minus");
+    const plus = document.getElementById("guests-plus");
+    const guestsN = document.getElementById("guests-n");
+    if (minus) minus.addEventListener("click", () => {
       guests = Math.max(1, guests - 1);
-      document.getElementById("guests-n").textContent = String(guests);
-      updateTotal();
+      if (guestsN) guestsN.textContent = String(guests);
+      if (guestsLabel) guestsLabel.textContent = String(guests);
+      patchBookHref();
       if (selected) loadSlots(selected);
     });
-    document.getElementById("guests-plus").addEventListener("click", () => {
+    if (plus) plus.addEventListener("click", () => {
       guests = Math.min(14, guests + 1);
-      document.getElementById("guests-n").textContent = String(guests);
-      updateTotal();
+      if (guestsN) guestsN.textContent = String(guests);
+      if (guestsLabel) guestsLabel.textContent = String(guests);
+      patchBookHref();
       if (selected) loadSlots(selected);
     });
-
-    // payment methods
-    const methods = document.querySelectorAll(".pay-method-btn");
-    const selectedEl = document.querySelector(".pay-selected");
-    const selectedMethodLabel = document.querySelector(".pay-selected-label");
-    const cardFields = document.getElementById("card-fields");
-    let chosen = null;
-    methods.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        methods.forEach((b) => b.classList.remove("is-selected"));
-        btn.classList.add("is-selected");
-        chosen = btn.getAttribute("data-method");
-        if (selectedEl && selectedMethodLabel) {
-          selectedMethodLabel.textContent = btn.childNodes[0].textContent.trim();
-          selectedEl.hidden = false;
-        }
-        if (cardFields) {
-          const open = chosen === "card";
-          cardFields.classList.toggle("is-open", open);
-          cardFields.setAttribute("aria-hidden", open ? "false" : "true");
-        }
-      });
-    });
-    const payBtn = document.getElementById("pay-now-btn");
-    if (payBtn) {
-      payBtn.addEventListener("click", () => {
-        if (!selected) {
-          alert("Pick a date on the calendar first.");
-          wrap.scrollIntoView({ behavior: "smooth", block: "center" });
-          return;
-        }
-        if (!selectedTime) {
-          alert("Pick a departure time.");
-          timeGrid && timeGrid.scrollIntoView({ behavior: "smooth", block: "center" });
-          return;
-        }
-        if (!chosen) {
-          document.getElementById("pay-panel").scrollIntoView({ behavior: "smooth", block: "center" });
-          alert("Choose a payment method on this page.");
-          return;
-        }
-        const sub = seatSubtotal();
-        const total = sub + taxOn(sub);
-        alert(
-          "Sample only — " +
-            (selectedMethodLabel ? selectedMethodLabel.textContent : chosen) +
-            " would charge " +
-            money(total) +
-            " for " +
-            guests +
-            " guest(s) on " +
-            selected +
-            " at " +
-            selectedTime +
-            ". Live Square not wired on this draft yet."
-        );
-      });
-    }
     loadDates();
   })();
   </script>
