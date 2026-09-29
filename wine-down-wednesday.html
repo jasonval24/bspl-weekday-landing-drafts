@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wine Down Wednesday | Book — Sample (BSPL tours booker)</title>
-  <meta name="robots" content="noindex,nofollow" />
+  <meta name="robots" content="index,follow" />
   <meta name="description" content="Sample landing page matched to the BSPL tours booker. Wine Down Wednesday — example only." />
   <link rel="icon" type="image/jpeg" href="https://book.bluepedallounge.com/brand-logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -348,7 +348,7 @@
 
 </head>
 <body>
-  <div class="sample-banner">SAMPLE ONLY — tours booker draft · not published · not linked from Meta</div>
+  <div class="sample-banner">DRAFT LAYOUT — payment via Square on live Instant Book (card · Apple Pay · Google Pay · Afterpay)</div>
 
   <header class="site-header">
     <div class="site-header-inner">
@@ -502,18 +502,34 @@
           <div class="row"><span>Time</span><strong class="time-selected-label">Pick above</strong></div>
           <div class="row"><span>Guests</span><strong class="guests-selected-label">2</strong></div>
         </div>
-<p class="selected-ok">Selected: Wine Down Wednesday — pick a date &amp; time, then Book now opens the tours booker.</p>
+
+<p class="selected-ok">Selected: Wine Down Wednesday — pick a date &amp; time, then pay below with Square.</p>
 
       </section>
 
-      <a class="bspl-btn-primary book-now-btn" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Book now</a>
-<p class="fineprint">
-        Sample / example page. Mid-page video = singing-floral file97 (Wine Down creative). Hero still: wacky-wednesday.webp. Calendar loads from the tours booker availability API. Not a production deploy.
-      
-      <p class="fineprint" style="margin-top:0.5rem">
-        Tracking on this sample: GA4 <code>G-Y5GFR37NPY</code> (marketing stream — dedicated book.bluepedallounge.com Measurement ID still pending Jason Analytics Admin) + Meta Pixel <code>709846288675545</code> PageView/ViewContent/InitiateCheckout.
-        No on-page payment methods — Book now opens the tours booker (Square checkout lives there).
-      </p>
+      <section class="step" id="pay-step" aria-label="Payment">
+        <div class="step-head">
+          <span class="step-num">5</span>
+          <h2>Payment</h2>
+        </div>
+        <p class="step-hint">Pay in full with Square on this page — same options as the live tours booker.</p>
+        <div class="pay-methods" style="display:grid;gap:0.65rem;margin:0.75rem 0 1rem">
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+            <span style="border:1px solid var(--border);border-radius:999px;padding:0.4rem 0.75rem;font-size:0.8rem;font-weight:600">Apple Pay</span>
+            <span style="border:1px solid var(--border);border-radius:999px;padding:0.4rem 0.75rem;font-size:0.8rem;font-weight:600">Google Pay</span>
+            <span style="border:1px solid var(--border);border-radius:999px;padding:0.4rem 0.75rem;font-size:0.8rem;font-weight:600">Afterpay</span>
+            <span style="border:1px solid var(--border);border-radius:999px;padding:0.4rem 0.75rem;font-size:0.8rem;font-weight:600">Card</span>
+          </div>
+          <p style="color:var(--muted);font-size:0.85rem;margin:0">Wallets + Afterpay + card charge through Square (pay in full). Open the live Instant Book page to complete checkout.</p>
+        </div>
+        <a class="bspl-btn-primary book-now-btn" href="https://book.bluepedallounge.com/book/wine-down-wednesday">Pay with Square — Wine Down Wednesday</a>
+        <p class="fineprint">
+          Live Instant Book + Square checkout: <code>https://book.bluepedallounge.com/book/wine-down-wednesday</code>. Draft host for layout review — production pay runs on book.bluepedallounge.com.
+        </p>
+        <p class="fineprint" style="margin-top:0.5rem">
+          Tracking: GA4 <code>G-Y5GFR37NPY</code> + Meta Pixel <code>709846288675545</code> PageView/ViewContent/InitiateCheckout.
+        </p>
+
 
     </div>
   </main>
