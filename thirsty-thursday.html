@@ -365,7 +365,7 @@
           <span class="step-num">2</span>
           <h2>Pick a date</h2>
         </div>
-        <p class="step-hint">Live open dates from Instant Book for <strong>Thirsty Thursday</strong>. Tap a highlighted day, then Book now.</p>
+        <p class="step-hint">Live open dates from the tours booker for <strong>Thirsty Thursday</strong>. Tap a highlighted day, then Book now.</p>
 
         <div class="cal-wrap" data-experience="thirsty-thursday" data-book-base="https://book.bluepedallounge.com/book?experience=thirsty-thursday">
           <div class="cal-head">
@@ -404,7 +404,7 @@
           <p class="pay-note">Apple Pay, Google Pay & Afterpay on full-pay checkouts — same rules as /book.</p>
         </div>
 
-        <p class="selected-ok">Selected: Thirsty Thursday — pick a date below, then Book now opens Instant Book.</p>
+        <p class="selected-ok">Selected: Thirsty Thursday — pick a date below, then Book now opens the tours booker.</p>
       </section>
 
       <a class="bspl-btn-primary book-now-btn" href="https://book.bluepedallounge.com/book?experience=thirsty-thursday">Book now</a>
@@ -466,10 +466,10 @@
         openDates = new Set(Array.isArray(data.dates) ? data.dates : []);
         statusEl.textContent = openDates.size
           ? openDates.size + " open dates in the next ~8 weeks — tap one to continue."
-          : "No open dates returned — Book now still opens Instant Book.";
+          : "No open dates returned — Book now still opens the tours booker.";
       } catch (e) {
         openDates = new Set();
-        statusEl.textContent = "Couldn’t load calendar (network). Book now still opens Instant Book.";
+        statusEl.textContent = "Couldn’t load calendar (network). Book now still opens the tours booker.";
       }
       render();
     }
@@ -496,7 +496,7 @@
           btn.addEventListener("click", () => {
             selected = iso;
             if (selectedLabel) selectedLabel.textContent = iso;
-            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — Book now opens Instant Book for this experience.";
+            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — Book now opens the tours booker for this experience.";
             if (bookBtn) bookBtn.href = bookBase;
             render();
           });

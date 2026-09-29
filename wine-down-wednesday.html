@@ -321,7 +321,7 @@
       <div class="title-row">
         <div>
           <h1>Wine Down Wednesday on the trolley</h1>
-          <p>Pick your date on Instant Book and lock it in — same checkout as every other BSPL ride.</p>
+          <p>Pick your date on the calendar and lock it in on the tours booker — same checkout as every other BSPL ride.</p>
         </div>
         <span class="secure-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -341,7 +341,7 @@
           <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Nov 11</a>
           <a class="date-chip" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Wed, Nov 18</a>
         </div>
-        <p class="upcoming-note">Open seats from Instant Book · times 3pm / 7pm / 8pm CT · $24/person + tax</p>
+        <p class="upcoming-note">Open seats from the tours booker · times 3pm / 7pm / 8pm CT · $24/person + tax</p>
       </div>
 
       <div class="fomo" aria-label="Trust highlights">
@@ -409,7 +409,7 @@
           <span class="step-num">2</span>
           <h2>Pick a date</h2>
         </div>
-        <p class="step-hint">Live open dates from Instant Book for <strong>Wine Down Wednesday</strong>. Tap a highlighted day, then Book now.</p>
+        <p class="step-hint">Live open dates from the tours booker for <strong>Wine Down Wednesday</strong>. Tap a highlighted day, then Book now.</p>
 
         <div class="cal-wrap" data-experience="wacky-wednesday" data-book-base="https://book.bluepedallounge.com/book?experience=wacky-wednesday">
           <div class="cal-head">
@@ -448,7 +448,7 @@
           <p class="pay-note">Apple Pay, Google Pay & Afterpay on full-pay checkouts — same rules as /book.</p>
         </div>
 
-        <p class="selected-ok">Selected: Wine Down Wednesday — pick a date below, then Book now opens Instant Book.</p>
+        <p class="selected-ok">Selected: Wine Down Wednesday — pick a date below, then Book now opens the tours booker.</p>
       </section>
 
       <a class="bspl-btn-primary book-now-btn" href="https://book.bluepedallounge.com/book?experience=wacky-wednesday">Book now</a>
@@ -510,10 +510,10 @@
         openDates = new Set(Array.isArray(data.dates) ? data.dates : []);
         statusEl.textContent = openDates.size
           ? openDates.size + " open dates in the next ~8 weeks — tap one to continue."
-          : "No open dates returned — Book now still opens Instant Book.";
+          : "No open dates returned — Book now still opens the tours booker.";
       } catch (e) {
         openDates = new Set();
-        statusEl.textContent = "Couldn’t load calendar (network). Book now still opens Instant Book.";
+        statusEl.textContent = "Couldn’t load calendar (network). Book now still opens the tours booker.";
       }
       render();
     }
@@ -540,7 +540,7 @@
           btn.addEventListener("click", () => {
             selected = iso;
             if (selectedLabel) selectedLabel.textContent = iso;
-            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — Book now opens Instant Book for this experience.";
+            statusEl.innerHTML = "Selected <strong>" + iso + "</strong> — Book now opens the tours booker for this experience.";
             if (bookBtn) bookBtn.href = bookBase;
             render();
           });
